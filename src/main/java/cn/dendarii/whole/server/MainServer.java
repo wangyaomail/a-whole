@@ -72,7 +72,10 @@ public class MainServer extends BaseService implements Runnable {
             }
             long endTime = System.currentTimeMillis();
             try {
-                Thread.sleep(10l * 1000 - (endTime - startTime));
+                long waitTime = 10l * 1000 - (endTime - startTime);
+                if (waitTime > 0) {
+                    Thread.sleep(waitTime);
+                }
             } catch (Exception e) {
                 logger.error("cu休止期故障");
             }
